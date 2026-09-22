@@ -1,0 +1,7 @@
+name='sriman'
+number=12345
+system=$(uname -a)
+
+echo "WELCOME BACK BABY !! YOU KNOW I AM YOUR SYSTEM . IT'S ME $system"
+echo "MY NAME IS $name & my number is $number"
+

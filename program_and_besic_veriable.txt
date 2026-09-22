@@ -1,0 +1,1038 @@
+# Bash & Linux Commands
+
+A collection of basic Bash/Linux commands, their usage, and example outputs.
+
+---
+
+## 1. `type`
+
+The `type` command shows how a command is interpreted by the shell.
+
+### Command
+
+```bash
+type a ls
+```
+
+### Output
+
+```text
+a not found
+ls is an alias for ls --color=auto
+```
+
+---
+
+## 2. `type -a`
+
+Shows all locations and definitions of a command.
+
+### Command
+
+```bash
+type -a ls
+```
+
+### Output
+
+```text
+ls is an alias for ls --color=auto
+ls is /usr/bin/ls
+ls is /bin/ls
+```
+
+---
+
+## 3. `whereis`
+
+Searches for the binary, source, and manual page of a command.
+
+### Command
+
+```bash
+whereis ls
+```
+
+### Output
+
+```text
+is not found
+ls: aliased to ls --color=auto
+/usr/bin/ls
+/bin/ls
+```
+
+> Note: `whereis` is different from `which`/`where`; it is primarily used to locate binaries, source files, and man pages.
+
+---
+
+## 4. `where`
+
+Shows how a command is resolved by the shell.
+
+### Command
+
+```bash
+where ls
+```
+
+### Output
+
+```text
+ls: aliased to ls --color=auto
+/usr/bin/ls
+/bin/ls
+```
+
+---
+
+## 5. `echo`
+
+Prints text to the terminal.
+
+### Command
+
+```bash
+echo hi
+```
+
+### Output
+
+```text
+hi
+```
+
+---
+
+## 6. Checking `echo`
+
+```bash
+type -a echo
+```
+
+### Output
+
+```text
+echo is a shell builtin
+echo is /usr/bin/echo
+echo is /bin/echo
+```
+
+---
+
+## 7. `where echo`
+
+```bash
+where echo
+```
+
+### Output
+
+```text
+echo: shell built-in command
+/usr/bin/echo
+/bin/echo
+```
+
+---
+
+## 8. `man`
+
+Opens the manual page for a command.
+
+### Command
+
+```bash
+man echo
+```
+
+---
+
+## 9. `rm`
+
+Checking the location of the `rm` command:
+
+```bash
+type -a rm
+```
+
+### Output
+
+```text
+rm is /usr/bin/rm
+rm is /bin/rm
+```
+
+```bash
+where rm
+```
+
+### Output
+
+```text
+/usr/bin/rm
+/bin/rm
+```
+
+---
+
+## 10. `help`
+
+Checking whether `help` is available as an external command:
+
+```bash
+where help
+```
+
+### Output
+
+```text
+help not found
+```
+
+```bash
+type -a help
+```
+
+### Output
+
+```text
+help not found
+```
+
+### Bash help
+
+```bash
+help -m echo | less
+```
+
+---
+
+## 11. `history`
+
+Checking the `history` command:
+
+```bash
+type history
+```
+
+### Output
+
+```text
+history is an alias for history 0
+```
+
+```bash
+where history
+```
+
+### Output
+
+```text
+history: aliased to history 0
+history: shell built-in command
+```
+
+---
+
+## 12. Listing Files with `ls`
+
+```bash
+ls
+```
+
+### Output
+
+```text
+10th_bash.sh  2nd_bash.sh  5th_bash.sh  8th_bash.sh  pushup.sh
+1_.sh         3rd_bash.sh  6th_bash.sh  9th_bash.sh  README.md
+1st_bash.sh   4rd_bash.sh  7th_bash.sh  eldering.sh  test_bash.sh
+```
+
+---
+
+## 13. `file`
+
+The `file` command identifies the type of a file.
+
+### Bash script
+
+```bash
+file 10th_bash.sh
+```
+
+### Output
+
+```text
+10th_bash.sh: Bourne-Again shell script, ASCII text executable
+```
+
+### README
+
+```bash
+file README.md
+```
+
+### Output
+
+```text
+README.md: ASCII text
+```
+
+### `/bin/rm`
+
+```bash
+file /bin/rm
+```
+
+### Output
+
+```text
+/bin/rm: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV),
+dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2,
+BuildID[sha1]=21c83ad7ac7fb56c81ffa74862eff7f850c48ab8,
+for GNU/Linux 3.2.0, stripped
+```
+
+---
+
+## 14. Checking a Custom Command
+
+```bash
+where sriman
+```
+
+### Output
+
+```text
+/usr/bin/sriman
+/bin/sriman
+```
+
+```bash
+file /usr/bin/sriman
+```
+
+### Output
+
+```text
+/usr/bin/sriman: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV),
+dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2,
+BuildID[sha1]=cfffcdd57bea0d21063e18b66ced151bd382d474,
+for GNU/Linux 3.2.0, stripped
+```
+
+---
+
+## 15. `pwd`
+
+`pwd` displays the current working directory.
+
+```bash
+type pwd
+```
+
+### Output
+
+```text
+pwd is a shell builtin
+```
+
+---
+
+## 16. Shell Variables
+
+### Incorrect variable reference
+
+```bash
+echo $pwd
+```
+
+### Output
+
+```text
+```
+
+The variable `pwd` was not defined.
+
+---
+
+### Trying `PWD` as a command
+
+```bash
+PWD
+```
+
+### Output
+
+```text
+PWD: command not found
+```
+
+---
+
+### Using single quotes
+
+```bash
+echo '$PWD'
+```
+
+### Output
+
+```text
+$PWD
+```
+
+Single quotes prevent variable expansion.
+
+---
+
+### Checking `pwd`
+
+```bash
+where pwd
+```
+
+### Output
+
+```text
+pwd: shell built-in command
+/usr/bin/pwd
+/bin/pwd
+```
+
+---
+
+## 17. Environment Variables
+
+### `$USER`
+
+```bash
+echo $USER
+```
+
+### Output
+
+```text
+blackgoku
+```
+
+### `$PWD`
+
+```bash
+echo $PWD
+```
+
+### Output
+
+```text
+/home/blackgoku/Bash-Scripting
+```
+
+### `whoami`
+
+```bash
+whoami
+```
+
+### Output
+
+```text
+blackgoku
+```
+
+---
+
+## 18. Checking `whoami`
+
+```bash
+type whoami
+```
+
+### Output
+
+```text
+whoami is /usr/bin/whoami
+```
+
+```bash
+where whoami
+```
+
+### Output
+
+```text
+/usr/bin/whoami
+/bin/whoami
+```
+
+---
+
+## 19. Checking the Shell
+
+```bash
+echo $SHELL
+```
+
+### Output
+
+```text
+/usr/bin/zsh
+```
+
+---
+
+## 20. Hostname
+
+### `$HOSTNAME`
+
+```bash
+echo $HOSTNAME
+```
+
+### Output
+
+```text
+```
+
+### `hostname`
+
+```bash
+hostname
+```
+
+### Output
+
+```text
+blackgoku
+```
+
+---
+
+## 21. Machine Type
+
+```bash
+machtype
+```
+
+### Output
+
+```text
+machtype: command not found
+```
+
+The correct environment variable can be checked with:
+
+```bash
+echo $MACHTYPE
+```
+
+### Output
+
+```text
+x86_64
+```
+
+---
+
+## 22. Creating a Variable
+
+```bash
+name=srii
+```
+
+Trying to execute the variable name as a command:
+
+```bash
+name
+```
+
+### Output
+
+```text
+Command 'name' not found, did you mean:
+  command 'nam' from deb nam
+  command 'uname' from deb coreutils
+  command 'named' from deb bind9
+  command 'lame' from deb lame
+  command 'nvme' from deb nvme-cli
+  command 'nama' from deb nama
+  command 'namei' from deb util-linux
+  command 'names' from deb names
+```
+
+To display the variable:
+
+```bash
+echo $name
+```
+
+### Output
+
+```text
+srii
+```
+
+---
+
+## 23. `unset`
+
+The `unset` command removes a shell variable.
+
+```bash
+unset name
+```
+
+Then:
+
+```bash
+echo $name
+```
+
+### Output
+
+```text
+```
+
+---
+
+## 24. Variables Containing Spaces
+
+```bash
+foo='HELLOW    WORLD'
+```
+
+```bash
+echo $foo
+```
+
+### Output
+
+```text
+HELLOW    WORLD
+```
+
+---
+
+## 25. `uname`
+
+Displays system information.
+
+### Operating System
+
+```bash
+uname
+```
+
+### Output
+
+```text
+Linux
+```
+
+### Kernel Release
+
+```bash
+uname -r
+```
+
+### Output
+
+```text
+7.1.5+kali-amd64
+```
+
+### Complete System Information
+
+```bash
+uname -a
+```
+
+### Output
+
+```text
+Linux blackgoku 7.1.5+kali-amd64 #1 SMP PREEMPT_DYNAMIC Kali
+7.1.5-1kali1 (2026-07-29) x86_64 GNU/Linux
+```
+
+---
+
+## 26. Storing a Command as a String
+
+```bash
+think='uname -a'
+```
+
+Display the variable:
+
+```bash
+echo $think
+```
+
+### Output
+
+```text
+uname -a
+```
+
+Using single quotes around the variable:
+
+```bash
+echo '$think'
+```
+
+### Output
+
+```text
+$think
+```
+
+---
+
+## 27. Removing a Variable
+
+```bash
+unset think
+```
+
+Then creating it again:
+
+```bash
+think='uname -a'
+```
+
+Double quotes also display the variable's value:
+
+```bash
+echo "$think"
+```
+
+### Output
+
+```text
+uname -a
+```
+
+---
+
+## 28. Command Substitution
+
+Instead of storing the command itself, command substitution stores the command's output.
+
+```bash
+think=$(uname -a)
+```
+
+Then:
+
+```bash
+echo "$think"
+```
+
+### Output
+
+```text
+Linux blackgoku 7.1.5+kali-amd64 #1 SMP PREEMPT_DYNAMIC Kali
+7.1.5-1kali1 (2026-07-29) x86_64 GNU/Linux
+```
+
+---
+
+# Topics Covered
+
+* `type`
+* `type -a`
+* `where`
+* `whereis`
+* `echo`
+* `man`
+* `rm`
+* `help`
+* `history`
+* `ls`
+* `file`
+* `pwd`
+* `whoami`
+* `hostname`
+* `uname`
+* Shell variables
+* Environment variables
+* `unset`
+* Single vs double quotes
+* Command substitution
+* Bash/Zsh built-ins
+* Linux executable files
+* Basic system information
+
+
+
+
+
+
+#IN MY SYSTEM IT'S LOOK LIKE .....
+
+──(blackgoku㉿blackgoku)-[~]
+└─$ cd Bash-Scripting
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ ls
+10th_bash.sh  2nd_bash.sh  5th_bash.sh  8th_bash.sh  pushup.sh
+1_.sh         3rd_bash.sh  6th_bash.sh  9th_bash.sh  README.md
+1st_bash.sh   4rd_bash.sh  7th_bash.sh  eldering.sh  test_bash.sh
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ type a ls
+a not found
+ls is an alias for ls --color=auto
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ type -a ls
+ls is an alias for ls --color=auto
+ls is /usr/bin/ls
+ls is /bin/ls
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ where is ls     
+is not found
+ls: aliased to ls --color=auto
+/usr/bin/ls
+/bin/ls
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ where ls   
+ls: aliased to ls --color=auto
+/usr/bin/ls
+/bin/ls
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo hi
+hi
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ type -a echo
+echo is a shell builtin
+echo is /usr/bin/echo
+echo is /bin/echo
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ where echo       
+echo: shell built-in command
+/usr/bin/echo
+/bin/echo
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ man echo 
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ 
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ type -a rm  
+rm is /usr/bin/rm
+rm is /bin/rm
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ where rm  
+/usr/bin/rm
+/bin/rm
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ where help
+help not found
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ type -a help
+help not found
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ help -m echo | less
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ man help 
+No manual entry for help
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ type history
+history is an alias for history 0
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ where history
+history: aliased to history 0
+history: shell built-in command
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ ls               
+10th_bash.sh  2nd_bash.sh  5th_bash.sh  8th_bash.sh  pushup.sh
+1_.sh         3rd_bash.sh  6th_bash.sh  9th_bash.sh  README.md
+1st_bash.sh   4rd_bash.sh  7th_bash.sh  eldering.sh  test_bash.sh
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ file 10th_bash.sh                              
+10th_bash.sh: Bourne-Again shell script, ASCII text executable
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ file README.md   
+README.md: ASCII text
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ file bin/rm   
+bin/rm: cannot open `bin/rm' (No such file or directory)
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ file /bin/rm
+/bin/rm: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=21c83ad7ac7fb56c81ffa74862eff7f850c48ab8, for GNU/Linux 3.2.0, stripped
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ where sriman 
+/usr/bin/sriman
+/bin/sriman
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ file /usr/bin/sriman 
+/usr/bin/sriman: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=cfffcdd57bea0d21063e18b66ced151bd382d474, for GNU/Linux 3.2.0, stripped
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ type pwd    
+pwd is a shell builtin
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo $pwd
+
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ PWD
+PWD: command not found
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo '$PWD'
+$PWD
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ where pwd   
+pwd: shell built-in command
+/usr/bin/pwd
+/bin/pwd
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo $USER 
+blackgoku
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo $PWD 
+/home/blackgoku/Bash-Scripting
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ whoami   
+blackgoku
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ type whoami
+whoami is /usr/bin/whoami
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ where whoami
+/usr/bin/whoami
+/bin/whoami
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo $SHELL
+/usr/bin/zsh
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo $HOSTNAME
+
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ hostname           
+blackgoku
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo $HOSTNAME
+
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ machtype   
+machtype: command not found
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo $MACHTYPE
+x86_64
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ name=srii                                                    
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ name     
+Command 'name' not found, did you mean:
+  command 'nam' from deb nam
+  command 'uname' from deb coreutils
+  command 'named' from deb bind9
+  command 'lame' from deb lame
+  command 'nvme' from deb nvme-cli
+  command 'nama' from deb nama
+  command 'namei' from deb util-linux
+  command 'names' from deb names
+Try: sudo apt install <deb name>
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo $name    
+srii
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ foo='HELLOW    WORLD'
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo $foo 
+HELLOW    WORLD
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ unset name  
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo $name           
+
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ uname     
+Linux
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ uname -r
+7.1.5+kali-amd64
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ uname -a
+Linux blackgoku 7.1.5+kali-amd64 #1 SMP PREEMPT_DYNAMIC Kali 7.1.5-1kali1 (2026-07-29) x86_64 GNU/Linux
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ think='uname -a'
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo $think
+uname -a
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo '$think'
+$think
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ unset think  
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ think='uname -a'
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo "$think"                    
+uname -a
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ uname -a   
+Linux blackgoku 7.1.5+kali-amd64 #1 SMP PREEMPT_DYNAMIC Kali 7.1.5-1kali1 (2026-07-29) x86_64 GNU/Linux
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ think=$(uname -a)
+                                                                      
+┌──(blackgoku㉿blackgoku)-[~/Bash-Scripting]
+└─$ echo "$think"    
+Linux blackgoku 7.1.5+kali-amd64 #1 SMP PREEMPT_DYNAMIC Kali 7.1.5-1kali1 (2026-07-29) x86_64 GNU/Linux
+
