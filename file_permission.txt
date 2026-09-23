@@ -1,0 +1,387 @@
+## 30. Listing Files with Permissions — `ls -l`
+
+The `ls -l` command displays files with detailed information such as permissions, owner, group, size, and modification time.
+
+### Command
+
+```bash
+ls -l
+```
+
+### Output
+
+```text
+total 92
+-rwxrwxr-x 1 blackgoku blackgoku   598 Sep 14 13:52 10th_bash.sh
+-rw-rw-r-- 1 blackgoku blackgoku    37 Sep 14 13:52 1_.sh
+-rwxrwxr-x 1 blackgoku blackgoku    69 Sep 14 13:52 1st_bash.sh
+-rwxrwxr-x 1 blackgoku blackgoku   158 Sep 14 13:52 2nd_bash.sh
+-rwxrwxr-x 1 blackgoku blackgoku   113 Sep 14 13:52 3rd_bash.sh
+-rwxrwxr-x 1 blackgoku blackgoku   139 Sep 14 13:52 4rd_bash.sh
+-rwxrwxr-x 1 blackgoku blackgoku   123 Sep 14 13:52 5th_bash.sh
+-rwxrwxr-x 1 blackgoku blackgoku   148 Sep 14 13:52 6th_bash.sh
+-rwxrwxr-x 1 blackgoku blackgoku   835 Sep 14 13:52 7th_bash.sh
+-rwxrwxr-x 1 blackgoku blackgoku   229 Sep 14 13:52 8th_bash.sh
+-rwxrwxr-x 1 blackgoku blackgoku   638 Sep 14 13:52 9th_bash.sh
+-rw-rw-r-- 1 blackgoku blackgoku    88 Sep 22 11:00 bashfile1.txt
+-rwxrwxr-x 1 blackgoku blackgoku   158 Sep 14 13:52 eldering.sh
+-rw-rw-r-- 1 blackgoku blackgoku 18761 Sep 22 10:43 program_and_besic_veriable.txt
+-rwxrwxr-x 1 blackgoku blackgoku   159 Sep 14 13:52 pushup.sh
+-rw-rw-r-- 1 blackgoku blackgoku    40 Sep 14 12:53 README.md
+-rw-rw-r-- 1 blackgoku blackgoku   167 Sep 22 11:17 script1.sh
+-rwxrwxr-x 1 blackgoku blackgoku     3 Sep 22 11:06 script.sh
+-rwxrwxr-x 1 blackgoku blackgoku  1480 Sep 15 16:02 test_bash.sh
+```
+
+---
+
+## 31. Listing Hidden Files — `ls -la`
+
+The `-a` option includes hidden files and directories.
+
+### Command
+
+```bash
+ls -la
+```
+
+### Important Entries
+
+```text
+.
+..
+.git
+```
+
+The `.git` directory shows that the current directory is a Git repository.
+
+---
+
+## 32. Checking the Date
+
+The `date` command displays the current date and time.
+
+### Command
+
+```bash
+date
+```
+
+### Output
+
+```text
+Wed Sep 23 10:56:33 AM EDT 2026
+```
+
+---
+
+## 33. Viewing `script1.sh`
+
+### Command
+
+```bash
+cat script1.sh
+```
+
+### Script
+
+```bash
+name='sriman'
+number=12345
+system=$(uname -a)
+
+echo "WELCOME BACK BABY !! YOU KNOW I AM YOUR SYSTEM . IT'S ME $system"
+echo "MY NAME IS $name & my number is $number"
+```
+
+This script demonstrates:
+
+* String variables
+* Numeric variables
+* Command substitution
+* Using variables inside `echo`
+
+---
+
+## 34. Checking File Permissions
+
+### Before Making the Script Executable
+
+```bash
+ls -la script1.sh
+```
+
+### Output
+
+```text
+-rw-rw-r-- 1 blackgoku blackgoku 167 Sep 22 11:17 script1.sh
+```
+
+The file did not have execute permission.
+
+---
+
+## 35. Making a Script Executable — `chmod +x`
+
+The `chmod +x` command adds execute permission to a file.
+
+### Command
+
+```bash
+chmod +x script1.sh
+```
+
+Check the permissions again:
+
+```bash
+ls -la script1.sh
+```
+
+### Output
+
+```text
+-rwxrwxr-x 1 blackgoku blackgoku 167 Sep 22 11:17 script1.sh
+```
+
+The `x` indicates execute permission.
+
+---
+
+## 36. Running a Bash Script
+
+An executable script can be run using `./`.
+
+### Command
+
+```bash
+./script1.sh
+```
+
+### Output
+
+```text
+WELCOME BACK BABY !! YOU KNOW I AM YOUR SYSTEM . IT'S ME Linux blackgoku 7.1.5+kali-amd64 #1 SMP PREEMPT_DYNAMIC Kali 7.1.5-1kali1 (2026-07-29) x86_64 GNU/Linux
+MY NAME IS sriman & my number is 12345
+```
+
+The `system` variable contains the output of:
+
+```bash
+uname -a
+```
+
+---
+
+## 37. Renaming a Script — `mv`
+
+The `mv` command can be used to move or rename files.
+
+### Command
+
+```bash
+mv script1.sh SCRIPTT
+```
+
+The file `script1.sh` was renamed to:
+
+```text
+SCRIPTT
+```
+
+---
+
+## 38. Running the Renamed Script
+
+```bash
+./SCRIPTT
+```
+
+### Output
+
+```text
+WELCOME BACK BABY !! YOU KNOW I AM YOUR SYSTEM . IT'S ME Linux blackgoku 7.1.5+kali-amd64 #1 SMP PREEMPT_DYNAMIC Kali 7.1.5-1kali1 (2026-07-29) x86_64 GNU/Linux
+MY NAME IS sriman & my number is 12345
+```
+
+---
+
+## 39. Checking File Type with `file`
+
+### Command
+
+```bash
+file SCRIPTT
+```
+
+### Output
+
+```text
+SCRIPTT: ASCII text
+```
+
+After editing the file and adding the appropriate Bash script information:
+
+```bash
+file SCRIPTT
+```
+
+### Output
+
+```text
+SCRIPTT: Bourne-Again shell script, ASCII text executable
+```
+
+---
+
+## 40. Editing a File with `vim`
+
+The `vim` command opens a file in the Vim text editor.
+
+### Command
+
+```bash
+vim SCRIPTT
+```
+
+After editing the script, it can be executed again:
+
+```bash
+./SCRIPTT
+```
+
+### Output
+
+```text
+WELCOME BACK BABY !! YOU KNOW I AM YOUR SYSTEM . IT'S ME Linux blackgoku 7.1.5+kali-amd64 #1 SMP PREEMPT_DYNAMIC Kali 7.1.5-1kali1 (2026-07-29) x86_64 GNU/Linux
+MY NAME IS sriman & my number is 12345
+```
+
+---
+
+# Bash Loops
+
+## 41. Creating a Loop Script
+
+A file named `loop` was created using Vim.
+
+### Command
+
+```bash
+vim loop
+```
+
+The script was then executed using Bash:
+
+```bash
+bash loop
+```
+
+### Output
+
+```text
+thing is foo
+thing is bar
+thing is buzz
+thing is bat
+```
+
+This demonstrates a basic loop that processes multiple values.
+
+---
+
+## 42. Making the Loop Executable
+
+The `chmod +x` command was used to add execute permission.
+
+### Command
+
+```bash
+chmod +x loop
+```
+
+The script can then be executed directly:
+
+```bash
+./loop
+```
+
+### Output
+
+```text
+thing is foo
+thing is bar
+thing is buzz
+thing is bat
+```
+
+---
+
+## 43. Incorrect Filename
+
+An incorrect filename was entered:
+
+```bash
+./lopp
+```
+
+### Output
+
+```text
+zsh: no such file or directory: ./lopp
+```
+
+The actual file name is:
+
+```text
+loop
+```
+
+Therefore, the correct command is:
+
+```bash
+./loop
+```
+
+### Correct Output
+
+```text
+thing is foo
+thing is bar
+thing is buzz
+thing is bat
+```
+
+---
+
+# Commands Practiced
+
+```text
+ls -l
+ls -la
+date
+cat
+chmod +x
+ls -la <file>
+./<script>
+mv
+file
+vim
+bash <script>
+```
+
+# Concepts Practiced
+
+* Linux file permissions
+* Executable files
+* `chmod`
+* Running Bash scripts
+* Renaming files with `mv`
+* Checking file types with `file`
+* Editing files with Vim
+* Bash variables
+* Command substitution
+* Basic loops
+* Executing scripts with `bash`
+* Executing scripts with `./`
+* Understanding command/file-name errors
+

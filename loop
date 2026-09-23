@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for thing in foo bar buzz bat; do
+	echo "thing is $thing"
+done
