@@ -1,0 +1,164 @@
+# Bash User Input — `read` and Positional Parameters
+
+This Bash script demonstrates two common ways to take user input:
+
+1. **Command-line arguments** using `$1`
+2. **Interactive user input** using the `read` command
+
+It also demonstrates variables, conditional statements, and checking whether a variable contains a value.
+
+---
+
+## 📌 Script
+
+```bash
+#!/bin/bash
+
+#"read" # read command gives you the power to take user input.
+
+#read -p 'Enter your name: ' name
+name=$1
+
+#echo "hellow $name"
+
+if [[ -n $1 ]]; then
+    name=$1
+else
+    read -p 'Enter Your Name: ' name
+fi
+
+echo "hellow $name"
+```
+
+---
+
+# 🧠 Concepts Used
+
+## 1. Shebang — `#!/bin/bash`
+
+```bash
+#!/bin/bash
+```
+
+The shebang tells the operating system that this script should be executed using the **Bash shell**.
+
+---
+
+## 2. Variables in Bash
+
+A variable is used to store data.
+
+```bash
+name=$1
+```
+
+Here:
+
+* `name` is the variable.
+* `$1` represents the **first command-line argument**.
+* The value of `$1` is stored inside `name`.
+
+For example:
+
+```bash
+./script.sh Sriman
+```
+
+Then:
+
+```text
+$1 = Sriman
+name = Sriman
+```
+
+---
+
+# 3. Positional Parameters
+
+Bash provides special variables for command-line arguments.
+
+| Variable | Meaning                             |
+| -------- | ----------------------------------- |
+| `$0`     | Script name                         |
+| `$1`     | First argument                      |
+| `$2`     | Second argument                     |
+| `$3`     | Third argument                      |
+| `$#`     | Number of arguments                 |
+| `$@`     | All arguments                       |
+| `$?`     | Exit status of the previous command |
+
+### Example
+
+```bash
+./script.sh Sriman Kundu
+```
+
+Then:
+
+```text
+$0 = ./script.sh
+$1 = Sriman
+$2 = Kundu
+```
+
+---
+
+# 4. The `read` Command
+
+The `read` command is used to take input from the user while the script is running.
+
+Example:
+
+```bash
+read -p "Enter Your Name: " name
+```
+
+Here:
+
+* `read` → takes input from the user
+* `-p` → displays a prompt
+* `"Enter Your Name: "` → message shown to the user
+* `name` → variable where the input is stored
+
+Example output:
+
+```text
+Enter Your Name: Sriman
+```
+
+Now:
+
+```bash
+$name
+```
+
+contains:
+
+```text
+Sriman
+```
+
+---
+
+# 5. Checking User Input with `if`
+
+The script uses:
+
+```bash
+if [[ -n $1 ]]; then
+```
+
+The `-n` operator checks whether a string is **not empty**.
+
+Therefore:
+
+```bash
+[[ -n $1 ]]
+```
+
+means:
+
+> "Does `$1` contain some value?"
+
+If `$1` conta
+

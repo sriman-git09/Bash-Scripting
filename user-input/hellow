@@ -1,0 +1,14 @@
+#!/bin/bash
+#"read" #read command give you the power to take user input.
+#read -p 'Enter your name: ' name
+name=$1
+#echo "hellow $name"
+
+
+if [[ -n $1 ]]; then   # [[ ... ]] → Bash's way of checking a condition.  
+                 	#$1 → the first argument given when running the script.	
+	name=$1         # -n is check whether the line is empty or not 
+else
+	read -p 'Enter Your Name: ' name
+fi
+echo "hellow $name"
